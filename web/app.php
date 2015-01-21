@@ -17,6 +17,18 @@ $loader = require __DIR__ .'/../vendor/autoload.php';
 
 require __DIR__ . '/../app/AppKernel.php';
 
+// Initialize an application aspect container
+$applicationAspectKernel = \Aspect\ApplicationAspectKernel::getInstance();
+$applicationAspectKernel->init(array(
+    'debug' => true, // use 'false' for production mode
+    // Cache directory
+    'cacheDir'  => __DIR__ . '/../app/cache/aop',
+    // Include paths restricts the directories where aspects should be applied, or empty for all source files
+    'includePaths' => array(
+        __DIR__ . '/../src'
+    )
+));
+
 $debug       = true;
 $environment = 'dev';
 
